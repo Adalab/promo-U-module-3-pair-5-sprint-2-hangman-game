@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 // import PropTypes from 'prop-types';
 import Header from './Header';
-import Dummy from './dummy';
+import Dummy from './Dummy';
 import SolutionLetters from './SolutionLetters';
 import ErrorLetters from './ErrorLetters';
-import Form from './form';
+import Form from './Form';
 
 // api
 import getWordFromApi from '../services/api';
@@ -37,6 +37,7 @@ function App() {
     );
     return errorLetters.length;
   };
+  
 
   const handleLastLetter = (value) => {
     value = value.toLocaleLowerCase();
