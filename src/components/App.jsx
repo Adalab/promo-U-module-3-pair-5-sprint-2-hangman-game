@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
+import { NavLink, Route, Routes } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import Header from './Header';
 import Dummy from './Dummy';
 import SolutionLetters from './SolutionLetters';
 import ErrorLetters from './ErrorLetters';
 import Form from './Form';
+import Footer from './Footer';
+import Instructions from './Instructions';
+import Options from './Options';
 
 // api
 import getWordFromApi from '../services/api';
@@ -14,6 +18,8 @@ import '../styles/Dummy.scss';
 import '../styles/Letters.scss';
 import '../styles/Form.scss';
 import '../styles/Header.scss';
+import '../styles/Footer.scss';
+import '../styles/instructions.scss';
 
 function App() {
   const [word, setWord] = useState('');
@@ -37,7 +43,6 @@ function App() {
     );
     return errorLetters.length;
   };
-  
 
   const handleLastLetter = (value) => {
     value = value.toLocaleLowerCase();
@@ -47,6 +52,10 @@ function App() {
       userLetters.push(value);
       setUserLetters([...userLetters]);
     }
+  };
+
+  const handleChangeForm = (ev) => {
+    setWord(word);
   };
 
   return (
@@ -64,6 +73,11 @@ function App() {
         </section>
         <Dummy numberErrors={getNumberOfErrors()} />
       </main>
+      <Routes>
+        <Route path='/instructions' element={<Instructions />} />
+        <Route path='/options' element={<Options />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }
